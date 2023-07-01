@@ -1,0 +1,88 @@
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+[type=color] {
+  appearance: none;
+  border: 0;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  height: 100%;
+  mask: var(--mask);
+  -webkit-mask: var(--mask);
+  padding: 0;
+  width: 100%;
+ 
+  &::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  &::-webkit-color-swatch {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+  }
+}
+label:has([type=color]) {
+  aspect-ratio: 1 / 1;
+  background-color: #f4f4f4;
+  display: grid;
+  position: relative;
+  
+  &::after {
+    background: var(--mask);
+    content: '';
+    display: block;
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+}
+fieldset {
+  --mask: url('https://assets.stoumann.dk/img/tshirt.webp') no-repeat center / contain;
+  border: 0;
+  display: grid;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  gap: 3px;
+  grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
+ 
+}
+legend {
+  color: #555555;
+	display: block;
+  font-size: 1.5em;
+  font-weight: 300;
+  padding: .5em 0;
+
+  & small {
+    color: #737479;
+    display: block;
+    font-size: 0.675em;
+    margin-block-start: .33em;
+  }
+  & span {
+    color: #E50010;
+  }
+}
+@media (hover: hover) {
+  label:has([type=color]):hover {
+    box-shadow: inset 0 0 0.1em #9e9e9e;
+		&::before {
+      background:#555;
+      color: #fff;
+      content: 'Click for variants';
+      display: block;
+      font-size: xx-small;
+      grid-column: 1 / -1;
+      grid-row: 1 / -1;
+      margin: 1ch;
+      padding: .125em .25em;
+      place-self: start end;
+      pointer-events: none;
+      z-index: 1;
+    }
+  }
+}
